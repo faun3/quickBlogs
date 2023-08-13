@@ -10,6 +10,7 @@ const Post = z.object({
 });
 
 type Post = z.infer<typeof Post>;
+export { Post };
 
 const NewPost = () => {
   const {
@@ -22,6 +23,7 @@ const NewPost = () => {
 
   const submitData = (data: Post) => {
     console.log("valid", data);
+    // add a new document to the database
   };
 
   return (
