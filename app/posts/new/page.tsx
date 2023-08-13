@@ -12,9 +12,11 @@ const Post = z.object({
 type Post = z.infer<typeof Post>;
 
 const NewPost = () => {
-  const formData = {};
-
-  const { register, handleSubmit } = useForm<Post>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Post>({
     resolver: zodResolver(Post),
   });
 
@@ -39,6 +41,7 @@ const NewPost = () => {
             className="w-full"
             {...register("title")}
           />
+          {errors.title && <div>{errors.title.message}</div>}
         </div>
         <div>
           <label htmlFor="" className="block">
@@ -51,6 +54,7 @@ const NewPost = () => {
             className="w-full"
             {...register("postText")}
           ></textarea>
+          {errors.postText && <div>{errors.postText.message}</div>}
         </div>
         <button>Post</button>
       </form>
